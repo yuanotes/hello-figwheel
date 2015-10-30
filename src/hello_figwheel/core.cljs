@@ -2,7 +2,8 @@
   (:require [sablono.core :as sab])
   )
 
-(def app-state (atom { :likes 0 }))
+(defonce app-state (atom { :likes 0 }))
+
 
 (defn like-figwheel [data]
   (sab/html [:div
@@ -12,7 +13,11 @@
                     "Thumbs up"]]
              ]
   )
+  )
 
 (defn render! []
   (.render js/React
            (like-figwheel app-state)
+           (.getElementById js/document "app")))
+(add-watch app-state :on-change (fn [_ _ _ _] (render!)))
+(render!)
