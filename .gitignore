@@ -2,3 +2,5 @@ out
 target
 *.log
 .DS_Store
+**/.idea/workspace.xml
+resources/public/cljs/out
